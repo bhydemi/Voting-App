@@ -73,7 +73,26 @@ else:
     title = app.config['TITLE']
 
 # Redis Connection
-r = redis.Redis()
+# Check if running in AKS (with REDIS environment variable) or VMSS (localhost)
+if "REDIS" in os.environ:
+    # AKS Mode - Redis in separate container
+    redis_server = os.environ['REDIS']
+    try:
+        if "REDIS_PWD" in os.environ:
+            r = redis.StrictRedis(host=redis_server,
+                                port=6379,
+                                password=os.environ['REDIS_PWD'])
+        else:
+            r = redis.Redis(redis_server)
+        r.ping()
+        print(f"Connected to Redis server: {redis_server}")
+    except redis.ConnectionError:
+        print(f"Failed to connect to Redis at {redis_server}")
+        exit('Failed to connect to Redis, terminating.')
+else:
+    # VMSS Mode - Redis on localhost
+    r = redis.Redis()
+    print("Connected to Redis on localhost")
 
 # Change title to host name to demo NLB
 if app.config['SHOWHOST'] == "true":
