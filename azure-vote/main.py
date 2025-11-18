@@ -20,9 +20,13 @@ from opencensus.tags import tag_map as tag_map_module
 from opencensus.trace import config_integration
 from opencensus.trace.samplers import ProbabilitySampler
 from opencensus.trace.tracer import Tracer
+from applicationinsights import TelemetryClient
 
 # Instrumentation Key - Replace with your actual key after creating Application Insights
 INSTRUMENTATION_KEY = '9a9886b5-ed7e-4c22-a982-0184fa3335e5'
+
+# Telemetry Client for custom events
+tc = TelemetryClient(INSTRUMENTATION_KEY)
 
 # Logging
 logger = logging.getLogger(__name__)
@@ -126,6 +130,14 @@ def index():
             # Get current values
             vote1 = r.get(button1).decode('utf-8')
             vote2 = r.get(button2).decode('utf-8')
+
+            # TODO: Track custom events for Dogs and Cats
+            if vote == button1:  # Cats
+                tc.track_event('Cats', {'Cats Vote': vote1})
+                tc.flush()
+            elif vote == button2:  # Dogs
+                tc.track_event('Dogs', {'Dogs Vote': vote2})
+                tc.flush()
 
             # Return results
             return render_template("index.html", value1=int(vote1), value2=int(vote2), button1=button1, button2=button2, title=title)
