@@ -22,7 +22,7 @@ from opencensus.trace.samplers import ProbabilitySampler
 from opencensus.trace.tracer import Tracer
 
 # Instrumentation Key - Replace with your actual key after creating Application Insights
-INSTRUMENTATION_KEY = 'PASTE_YOUR_INSTRUMENTATION_KEY_HERE'
+INSTRUMENTATION_KEY = '9a9886b5-ed7e-4c22-a982-0184fa3335e5'
 
 # Logging
 logger = logging.getLogger(__name__)
