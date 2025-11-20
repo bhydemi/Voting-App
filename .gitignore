@@ -44,3 +44,12 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Temporary helper scripts (already in gitignore but adding specific ones)
+organize-reviewer-screenshots.sh
+organize-new-screenshots.sh
+
+# Documentation drafts
+SCREENSHOT-STATUS.md
+azure-queries.md
+verify-events.md
