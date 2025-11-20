@@ -1,1 +1,46 @@
+# Backup folders
+submission-screenshots-backup/
+
+# Helper scripts (temporary)
+organize-screenshots.sh
+organize-new-screenshots.sh
+setup-hpa-and-test.sh
+generate-load.sh
+monitor-hpa.sh
+check-custom-events.sh
+verify-events.md
+submission-screenshots/organize-new-screenshots.sh
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Environment
+.env
+.venv
+venv/
+ENV/
+
+# OS files
 .DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Azure local files
+.azure/
+
+# Logs
+*.log
